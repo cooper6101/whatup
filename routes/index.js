@@ -1,41 +1,29 @@
 var express = require('express');
 var router = express.Router();
+const { 
+  getIndex,
+  getRegister,
+  getShow,
+  getEdit,
+  getVenueRegister } = require('../controllers');
 const { asyncErrorHandler } = require('../middleware');
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-  res.send('GET /');
-});
+router.get('/', getIndex);
 
 // GET /register // register new user
-router.get('/register', (req, res, next) => {
-  res.send('GET /register');
-});
+router.get('/register', getRegister);
 
 // POST /register // create new user
 router.post('/register', (req, res, next) => {
   res.send('POST /register');
 });
 
-// GET /registerVenue // register new Venue
-router.get('/registervenue', (req, res, next) => {
-  res.send('GET /registervenue');
-});
-
-// POST /registerVenue // create new Venue
-router.post('/registervenue', (req, res, next) => {
-  res.send('POST /registervenue');
-});
-
 // GET /profile/:id // show profile page
-router.get('/profile/:id', (req, res, next) => {
-  res.send('GET /profile/:id');
-});
+router.get('/profile/:id', getShow);
 
 // GET /profile/:id/edit // show profile edit form
-router.get('/profile/:id/edit', (req, res, next) => {
-  res.send('GET /profile/:id/edit');
-});
+router.get('/profile/:id/edit', getEdit);
 
 // PUT /profile/:id/ // update user
 router.put('/profile/:id', (req, res, next) => {

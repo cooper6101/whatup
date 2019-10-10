@@ -1,4 +1,3 @@
-  
 module.exports = {
     asyncErrorHandler: (fn) =>
         (req, res, next) => {
