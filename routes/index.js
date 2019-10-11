@@ -3,6 +3,9 @@ var router = express.Router();
 const { 
   getIndex,
   getRegister,
+  postRegister,
+  getLogin,
+  postLogin,
   getShow,
   getEdit,
   getVenueRegister } = require('../controllers');
@@ -15,9 +18,13 @@ router.get('/', getIndex);
 router.get('/register', getRegister);
 
 // POST /register // create new user
-router.post('/register', (req, res, next) => {
-  res.send('POST /register');
-});
+router.post('/register', asyncErrorHandler(postRegister));
+
+// GET /login // get login page
+router.get('/login', getLogin);
+
+// POST /login // login user
+router.post('/login', postLogin);
 
 // GET /profile/:id // show profile page
 router.get('/profile/:id', getShow);
