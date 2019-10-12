@@ -1,19 +1,17 @@
 const mongoose = require('mongoose');
-const User = require('./user');
 const Schema = mongoose.Schema;
+const User = require('./user');
 
-const UserSchema = new Schema({
-    images: String,
+const VenueSchema = new Schema({
     title: String,
     hours: String,
-    location: String,
     description: String,
-    owner: {
+    specials: String,
+    events: String,
+    author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    },
-    specials: String,
-    events: String
+    }
 });
 
 module.exports = mongoose.model('Venue', VenueSchema);

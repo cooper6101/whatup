@@ -12,6 +12,7 @@ const logger = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
 const User = require('./models/user');
+const Venue = require('./models/venue');
 
 mongoose.Promise = global.Promise;
 
@@ -57,7 +58,7 @@ app.use(passport.session());
 passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser())
+passport.deserializeUser(User.deserializeUser());
 
 // set local variables middleware
 app.use((req, res, next) => {

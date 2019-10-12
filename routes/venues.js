@@ -1,18 +1,25 @@
 var express = require('express');
 var router = express.Router();
 const { 
-  getRegister,
+  getVenueRegister,
+  postVenueRegister,
+  getLogin,
+  postLogin,
   getShow,
   getEdit } = require('../controllers/venues');
 const { asyncErrorHandler } = require('../middleware');
 
 // GET /venue/register // register new Venue
-router.get('/register', getRegister);
+router.get('/register', getVenueRegister);
 
 // POST /venue/register // create new Venue
-router.post('/register', (req, res, next) => {
-  res.send('POST /registervenue');
-});
+router.post('/register', asyncErrorHandler(postVenueRegister));
+
+// GET /venue/login
+router.get('/login', getLogin);
+
+// POST /venue/login
+router.post('/login', postLogin);
 
 // GET /venue/:id // show venue page
 router.get('/:id', getShow);
