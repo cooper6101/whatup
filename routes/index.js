@@ -18,7 +18,7 @@ router.get('/', getIndex);
 router.get('/register', getRegister);
 
 // POST /register // create new user
-router.post('/register', asyncErrorHandler(postRegister));
+router.post('/', asyncErrorHandler(postRegister));
 
 // GET /login // get login page
 router.get('/login', getLogin);
