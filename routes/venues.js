@@ -13,7 +13,7 @@ const { asyncErrorHandler } = require('../middleware');
 router.get('/register', getVenueRegister);
 
 // POST /venue/register // create new Venue
-router.post('/register', asyncErrorHandler(postVenueRegister));
+router.post('/', asyncErrorHandler(postVenueRegister));
 
 // GET /venue/login
 router.get('/login', getLogin);
@@ -22,7 +22,7 @@ router.get('/login', getLogin);
 router.post('/login', postLogin);
 
 // GET /venue/:id // show venue page
-router.get('/:id', getShow);
+router.get('/:id', asyncErrorHandler(getShow));
 
 // GET /venue/:id/edit // show venue edit form
 router.get('/:id/edit', getEdit);
