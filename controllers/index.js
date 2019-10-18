@@ -1,10 +1,12 @@
 const User = require('../models/user');
+const Venue = require('../models/venue');
 const passport = require('passport');
 
 module.exports = {
     // GET /
-    getIndex(req, res, next) {
-        res.render('index');
+    async getIndex(req, res, next) {
+        let venues = await Venue.find({});
+        res.render('index',  { venues });
     },
 
     // GET /register

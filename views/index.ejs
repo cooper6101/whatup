@@ -3,3 +3,13 @@
     <h1>Welcome to Whatup</h1>
     <p>Welcome to Whatup's Website</p>
 
+    <% venues.forEach(function(venue) { %>
+        <div>
+            <h2>Title: <%= venue.title %></h2>
+            <p>Price: <%= venue.hours %></p>
+            <p>Description: <%= venue.description %></p>
+            <p>Location: <%= venue.specials %></p>
+            <p>Events: <%= venue.events %></p>
+            <div><a href="/venue/<%= venue.id %>">View More</a></div>
+        </div>
+    <% }); %>

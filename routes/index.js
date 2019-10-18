@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const { 
   getIndex,
   getRegister,
@@ -12,7 +12,7 @@ const {
 const { asyncErrorHandler } = require('../middleware');
 
 /* GET home page. */
-router.get('/', getIndex);
+router.get('/',  asyncErrorHandler(getIndex));
 
 // GET /register // register new user
 router.get('/register', getRegister);
