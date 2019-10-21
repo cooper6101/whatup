@@ -1,5 +1,11 @@
 const Venue = require('../models/venue');
 const passport = require('passport');
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'whatup-llc',
+    api_key: '636321972833769',
+    api_secret: process.env.CLOUDINARY_SECRET
+});
 
 module.exports = {
 
@@ -9,9 +15,16 @@ module.exports = {
     },
 
     // POST /venue
-    async postVenueRegister(req, res, next) {  
-        let venue = await Venue.create(req.body);
-
+    async postVenueRegister(req, res, next) {
+        req.body.venue.images = []; 
+        for(const file of req.files) {
+            let image = await cloudinary.v2.uploader.upload(file.path);
+            req.body.venue.images.push({
+                url: image.secure_url,
+                public_id: image.public_id
+            });
+        } 
+        let venue = await Venue.create(req.body.venue);
         req.session.success = 'Venue created successfully!';
         res.redirect(`/venue/${venue.id}`);
     },

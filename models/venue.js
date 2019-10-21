@@ -6,6 +6,7 @@ const VenueSchema = new Schema({
     title: String,
     hours: String,
     description: String,
+    images: [ { url: String, public_id: String} ],
     specials: String,
     events: String,
     author: {

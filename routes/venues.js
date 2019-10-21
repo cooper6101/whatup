@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const multer = require('multer');
+const upload = multer({'dest': 'uploads/'});
 const { 
   getVenueRegister,
   postVenueRegister,
@@ -13,7 +15,7 @@ const { asyncErrorHandler } = require('../middleware');
 router.get('/register', getVenueRegister);
 
 // POST /venue/register // create new Venue
-router.post('/', asyncErrorHandler(postVenueRegister));
+router.post('/', upload.array('images', 4), asyncErrorHandler(postVenueRegister));
 
 // GET /venue/login
 router.get('/login', getLogin);
