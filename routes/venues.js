@@ -8,7 +8,8 @@ const {
   getLogin,
   postLogin,
   getShow,
-  getEdit } = require('../controllers/venues');
+  getEdit,
+  putEdit } = require('../controllers/venues');
 const { asyncErrorHandler } = require('../middleware');
 
 // GET /venue/register // register new Venue
@@ -27,12 +28,10 @@ router.post('/login', postLogin);
 router.get('/:id', asyncErrorHandler(getShow));
 
 // GET /venue/:id/edit // show venue edit form
-router.get('/:id/edit', getEdit);
+router.get('/:id/edit', asyncErrorHandler(getEdit));
 
 // PUT /venue/:id/ // update venue
-router.put('/:id', (req, res, next) => {
-    res.send('PUT /venue/:id');
-  });
+router.put('/:id', asyncErrorHandler(putEdit));
 
 // DELETE /venue/:id // delete venue
 router.delete('/:id', (req, res, next) => {

@@ -1,5 +1,47 @@
 <% layout('layouts/boilerplate') -%>
 
-<h1>This is the venue Edit Page</h1>
-
 <%= venue.title %>
+
+<div class="container">
+
+        <div class="col-sm-6 col-sm-offset-3">
+        
+            <h1><span class="fa fa-sign-in"></span> Edit Venue </h1>
+        
+            <!-- LOGIN FORM -->
+            <form action="/venue/<%= venue.id %>?_method=PUT" method="POST" id="venueEditForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" name="venue[title]" value="<%= venue.title %>">
+                </div>
+                <div class="form-group">
+                    <label>Hours</label>
+                    <input type="text" class="form-control" name="venue[hours]" value="<%= venue.hours %>">
+                </div>
+                <div>
+                    <label>Images</label>
+                    <input type="file" accept="images/*" name="images" multiple>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" class="form-control" name="venue[description]" value="<%= venue.description %>">
+                </div>
+                <div class="form-group">
+                    <label>Specials</label>
+                    <input type="text" class="form-control" name="venue[specials]" value="<%= venue.specials %>">
+                </div>
+                <div class="form-group">
+                    <label>Events</label>
+                    <input type="text" class="form-control" name="venue[events]" value="<%= venue.events %>">
+                </div>
+        
+                <button type="submit" class="btn btn-warning btn-lg">Update Venue</button>
+            </form>
+        
+            <hr>
+        
+            <p><a href="/">home</a>.</p>
+        
+        </div>
+        
+</div>

@@ -51,9 +51,27 @@ module.exports = {
     },
 
     // GET /venue/:id/edit
-    getEdit(req, res, next) {
-        res.render('venue/edit');
-      }
+    async getEdit(req, res, next) {
+        let venue = await Venue.findById(req.params.id);
+        res.render('venue/edit', { venue });
+      },
+
+    // PUT /venue/:id  
+    async putEdit(req, res, next) {
+        let venue = await Venue.findById(req.params.id);
+
+        //update contents of venue
+        venue.title = req.body.venue.title;
+        venue.hours = req.body.venue.hours;
+        venue.description = req.body.venue.description;
+        venue.specials = req.body.venue.specials;
+        venue.events = req.body.venue.events;
+
+        //save the updates to db
+        venue.save();
+        // redirect to show page
+        res.redirect(`/venue/${venue.id}`);
+    }
 
 }
     
