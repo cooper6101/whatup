@@ -6,7 +6,8 @@ module.exports = {
     // GET /
     async getIndex(req, res, next) {
         let venues = await Venue.find({});
-        res.render('index',  { venues });
+        let users = await User.find({});
+        res.render('index',  { venues, users });
     },
 
     // GET /register
@@ -41,12 +42,15 @@ module.exports = {
     },
 
     // GET /profile/:id 
-    getShow(req, res, next) {
-        res.render('profile/show');
+    async getShow(req, res, next) {
+        //find users by id
+        let user = await User.findById(req.params.id);
+        res.render('profile/show', { user });
     },
 
     // GET /profile/:id/edit
-    getEdit(req, res, next) {
-        res.render('profile/edit');
-      }
+    async getEdit(req, res, next) {
+        let user = await User.findById(req.params.id);
+        res.render('profile/edit', { user });
+    }
 }

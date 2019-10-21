@@ -13,3 +13,10 @@
             <div><a href="/venue/<%= venue.id %>">View More</a></div>
         </div>
     <% }); %>
+
+    <% users.forEach(function(user) { %>
+        <div>
+            <h2>username: <%= user.username %></h2>
+            <div><a href="/profile/<%= user.id %>">View More</a></div>
+        </div>
+    <% }); %>

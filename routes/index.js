@@ -27,10 +27,10 @@ router.get('/login', getLogin);
 router.post('/login', postLogin);
 
 // GET /profile/:id // show profile page
-router.get('/profile/:id', getShow);
+router.get('/profile/:id', asyncErrorHandler(getShow));
 
 // GET /profile/:id/edit // show profile edit form
-router.get('/profile/:id/edit', getEdit);
+router.get('/profile/:id/edit', asyncErrorHandler(getEdit));
 
 // PUT /profile/:id/ // update user
 router.put('/profile/:id', (req, res, next) => {
