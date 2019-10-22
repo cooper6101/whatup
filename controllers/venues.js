@@ -101,7 +101,17 @@ module.exports = {
         req.session.success = 'Venue updated successfully!';
         // redirect to show page
         res.redirect(`/venue/${venue.id}`);
-    }
+    },
 
+        // DELETE venues destroy /venue/:id
+        async postDestroy(req, res, next) {
+            let venue = await Venue.findById(req.params.id);
+            for(const image of venue.images) {
+                await cloudinary.v2.uploader.destroy(image.public_id);
+            }
+            await venue.remove();
+            req.session.success = "venue Deleted Successfully";
+            res.redirect('/');
+        }
 }
     

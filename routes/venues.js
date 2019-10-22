@@ -9,7 +9,8 @@ const {
   postLogin,
   getShow,
   getEdit,
-  putEdit } = require('../controllers/venues');
+  putEdit,
+  postDestroy } = require('../controllers/venues');
 const { asyncErrorHandler } = require('../middleware');
 
 // GET /venue/register // register new Venue
@@ -34,8 +35,6 @@ router.get('/:id/edit', asyncErrorHandler(getEdit));
 router.put('/:id', upload.array('images', 4), asyncErrorHandler(putEdit));
 
 // DELETE /venue/:id // delete venue
-router.delete('/:id', (req, res, next) => {
-    res.send('DELETE /venue/:id');
-  });
+router.delete('/:id', asyncErrorHandler(postDestroy));
 
 module.exports = router;

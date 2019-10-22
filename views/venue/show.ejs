@@ -13,3 +13,8 @@
 <p>Events: <%= venue.events %></p>
 
 <a href="/venue/<%= venue.id %>/edit">Edit Venue</a>
+<div>
+    <form action="/venue/<%= venue.id %>?_method=DELETE" method="POST">
+        <input type="submit" value="Delete">
+    </form>
+</div>
