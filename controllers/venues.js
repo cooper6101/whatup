@@ -59,8 +59,36 @@ module.exports = {
     // PUT /venue/:id  
     async putEdit(req, res, next) {
         let venue = await Venue.findById(req.params.id);
-
-        //update contents of venue
+            //   check if there's any images for deletion
+    if (req.body.deleteImages && req.body.deleteImages.length) {
+        // assign deletImages from req.body to its own variable
+        let deleteImages = req.body.deleteImages;
+        // loop over deleteImages
+        for(const public_id of deleteImages) {
+            // delete images from cloudinary
+            await cloudinary.v2.uploader.destroy(public_id);
+            // delete image from venue.images
+            for (const image of post.images) {
+                if (image.public_id === public_id) {
+                    let index = venue.images.indexOf(image);
+                    venue.images.splice(index, 1);
+                }
+            }
+        }
+    }
+    // check if there are any new images for upload
+    if (req.files) {
+        // upload images        
+        for(const file of req.files) {
+            let image = await cloudinary.v2.uploader.upload(file.path);
+            // add images to venue.images array
+            venue.images.push({
+                url: image.secure_url,
+                public_id: image.public_id
+            });
+        }        
+    }
+        //update the venue with any new properties
         venue.title = req.body.venue.title;
         venue.hours = req.body.venue.hours;
         venue.description = req.body.venue.description;
@@ -69,6 +97,8 @@ module.exports = {
 
         //save the updates to db
         venue.save();
+        // success message
+        req.session.success = 'Venue updated successfully!';
         // redirect to show page
         res.redirect(`/venue/${venue.id}`);
     }

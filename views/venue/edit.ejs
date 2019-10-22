@@ -9,7 +9,7 @@
             <h1><span class="fa fa-sign-in"></span> Edit Venue </h1>
         
             <!-- LOGIN FORM -->
-            <form action="/venue/<%= venue.id %>?_method=PUT" method="POST" id="venueEditForm" enctype="multipart/form-data">
+            <form action="/venue/<%= venue.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Title</label>
                     <input type="text" class="form-control" name="venue[title]" value="<%= venue.title %>">

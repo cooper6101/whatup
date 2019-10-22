@@ -31,7 +31,7 @@ router.get('/:id', asyncErrorHandler(getShow));
 router.get('/:id/edit', asyncErrorHandler(getEdit));
 
 // PUT /venue/:id/ // update venue
-router.put('/:id', asyncErrorHandler(putEdit));
+router.put('/:id', upload.array('images', 4), asyncErrorHandler(putEdit));
 
 // DELETE /venue/:id // delete venue
 router.delete('/:id', (req, res, next) => {
