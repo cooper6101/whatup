@@ -11,8 +11,8 @@ a {
 }
 
 #map {
-  width: 100%;
-  height: 500px;
+  width: 70%;
+  height: 350px;
 }
 
 .mapboxgl-popup {
