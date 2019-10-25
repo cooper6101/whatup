@@ -18,6 +18,7 @@ mongoose.Promise = global.Promise;
 
 const indexRouter = require('./routes/index');
 const venuesRouter = require('./routes/venues');
+const reviewsRouter = require('./routes/reviews');
 
 const app = express();
 
@@ -62,6 +63,11 @@ passport.deserializeUser(User.deserializeUser());
 
 // set local variables middleware
 app.use((req, res, next) => {
+  req.user = {
+    "_id" : "5da9c4a939fb7d368c71004c",
+    "username" : "morgan"
+  }
+  res.locals.currentUser = req.user;
   //set success flash message
   res.locals.success = req.session.success || '';
   delete req.session.success;
@@ -74,6 +80,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/venue', venuesRouter);
+app.use('/venue/:id/reviews', reviewsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -3,10 +3,20 @@
     <h1>Welcome to Whatup</h1>
     <p>Welcome to Whatup's Website</p>
 
+    <div id="map">
+
+    </div>
+    
+    <script>
+        mapboxgl.accessToken = "<%= mapboxToken %>";
+        const venues = { features: <%- JSON.stringify(venues) %> };
+    </script>
+    <script src='/javascripts/allVenuesClusterMap.js'></script>
+
     <% venues.forEach(function(venue) { %>
         <div>
             <h2>Title: <%= venue.title %></h2>
-            <p>Price: <%= venue.hours %></p>
+            <p>Hours: <%= venue.hours %></p>
             <p>Description: <%= venue.description %></p>
             <p>Location: <%= venue.specials %></p>
             <p>Events: <%= venue.events %></p>

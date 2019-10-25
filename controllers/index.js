@@ -7,7 +7,7 @@ module.exports = {
     async getIndex(req, res, next) {
         let venues = await Venue.find({});
         let users = await User.find({});
-        res.render('index',  { venues, users });
+        res.render('index',  { venues, users, mapboxToken: process.env.MAPBOX_TOKEN });
     },
 
     // GET /register

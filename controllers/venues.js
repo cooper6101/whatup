@@ -1,5 +1,6 @@
 const Venue = require('../models/venue');
-const passport = require('passport');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const geocodingClient = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 const cloudinary = require('cloudinary');
 cloudinary.config({
     cloud_name: 'whatup-llc',
@@ -23,8 +24,18 @@ module.exports = {
                 url: image.secure_url,
                 public_id: image.public_id
             });
-        } 
-        let venue = await Venue.create(req.body.venue);
+        }
+        let response = await geocodingClient
+        .forwardGeocode({
+            query: req.body.venue.location,
+            limit: 1
+        })
+        .send();
+        //use req.body to create a new post
+        req.body.venue.geometry = response.body.features[0].geometry; 
+        let venue = new Venue(req.body.venue);
+        venue.properties.description = `<strong><a href="/venue/${venue._id}">${venue.title}</a></strong><p>${venue.location}</p><p>${venue.description.substring(0, 20)}...</p>`;
+            await venue.save();
         req.session.success = 'Venue created successfully!';
         res.redirect(`/venue/${venue.id}`);
     },
@@ -45,9 +56,17 @@ module.exports = {
 
     // GET /venue/:id
     async getShow(req, res, next) {
-        //find venues by id
-        let venue = await Venue.findById(req.params.id);
-        res.render('venue/show', { venue });
+        //find venue by id
+        let venue = await Venue.findById(req.params.id).populate({
+            path: 'reviews',
+            options: { sort: { '_id': -1 }},
+            populate: {
+                path: 'author',
+                model: 'User'
+            }
+        });
+        const floorRating = venue.calculateAvgRating();
+        res.render('venue/show', { venue, floorRating });
     },
 
     // GET /venue/:id/edit
@@ -87,6 +106,17 @@ module.exports = {
                 public_id: image.public_id
             });
         }        
+    }
+    //check if location was updated
+    if (req.body.post.location !== post.location) {
+        let response = await geocodingClient
+        .forwardGeocode({
+            query: req.body.post.location,
+            limit: 1
+        })
+        .send();
+        post.geometry = response.body.features[0].geometry;
+        post.location = req.body.post.location;
     }
         //update the venue with any new properties
         venue.title = req.body.venue.title;
