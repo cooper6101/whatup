@@ -1,21 +1,43 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #00B7FF;
 }
 
-a {
-  color: #00B7FF;
+nav {
+  background-color: white;
 }
+
+footer {
+  background-color: white;
+}
+
+.bodyContainer {
+  margin-bottom: 50px;
+}
+
+.navbar {
+  padding: 40px 50px 20px 50px;
+}
+
 .mapboxgl-map {
   overflow: inherit;
-}
-
-#map {
-  width: 70%;
-  height: 350px;
 }
 
 .mapboxgl-popup {
   max-width: 400px;
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+#map {
+  width: 70%;
+  height: 350px;
+}
+
+#mainBrand {
+	width: 110;
+	height: 85;
+}
+
+#navLogo {
+	width: 107px;
+	height: 80px;
 }

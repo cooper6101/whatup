@@ -10,13 +10,13 @@
         <script src='https://api.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
         <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
         <link rel="stylesheet" href="/stylesheets/style.css">
-        <style>
-            body        { padding-top:80px; }
-        </style>
     </head>
     <body>
         <% include ../partials/navbar %>
         <% include ../partials/flash-messages %>
-        <%- body -%>
+        <div class="container bodyContainer">
+            <%- body -%>
+        </div>
+        <% include ../partials/footer %>
     </body>
 </html>
