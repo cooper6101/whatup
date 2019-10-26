@@ -16,7 +16,7 @@ footer {
 }
 
 .navbar {
-  padding: 40px 50px 20px 50px;
+  padding: 20px 50px 20px 50px;
 }
 
 .mapboxgl-map {
@@ -38,6 +38,6 @@ footer {
 }
 
 #navLogo {
-	width: 107px;
-	height: 80px;
+	width: 65px;
+	height: 60px;
 }
