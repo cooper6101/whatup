@@ -1,9 +1,24 @@
+const mongoose = require('mongoose');
 const User = require('../models/user');
 const Venue = require('../models/venue');
 const passport = require('passport');
 
 module.exports = {
     // GET /
+    async getLanding(req, res, next) {
+        let venues = await Venue.find({});
+        let users = await User.find({});
+        res.render('landing',  { venues, users, mapboxToken: process.env.MAPBOX_TOKEN });   
+    },
+
+    // GET /home
+    async getHome(req, res, next) {
+        let venues = await Venue.find({});
+        let users = await User.find({});
+        res.render('home',  { venues, users, mapboxToken: process.env.MAPBOX_TOKEN });  
+    },
+
+    // GET /allvenues
     async getIndex(req, res, next) {
         let venues = await Venue.find({});
         let users = await User.find({});
@@ -50,7 +65,8 @@ module.exports = {
 
     // GET /profile/:id/edit
     async getEdit(req, res, next) {
-        let user = await User.findById(req.params.id);
+        //find user by id
+        let user = await User.findById(mongoose.Types.ObjectId(req.params.user_id));
         res.render('profile/edit', { user });
     }
 }

@@ -1,0 +1,94 @@
+body {
+    /* background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ), 
+    url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80") no-repeat center center fixed;
+    font-family: 'Abel', sans-serif;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
+    background-color: #00668c;
+    color: aliceblue;
+  }
+
+  nav a {
+	color: black;
+}
+
+a {
+	color: #def7ff;
+}
+
+a:hover {
+  color: #2bcaff;
+  text-decoration: none;
+}
+
+.navbar-toggler {
+	color: black;
+}
+
+.accordion-section .panel-default > .panel-heading {
+    border: 0;
+    background: rgba(244, 244, 244, 0.3);
+    padding: 0;
+}
+.accordion-section .panel-default .panel-title a {
+    display: block;
+    font-style: italic;
+    font-size: 1.5rem;
+}
+.accordion-section .panel-default .panel-title a:after {
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-size: 3rem;
+    content: "\f106";
+    color: #def7ff;
+    float: right;
+    margin-top: -12px;
+}
+.accordion-section .panel-default .panel-title a.collapsed:after {
+    content: "\f107";
+}
+.accordion-section .panel-default .panel-body {
+    font-size: 1.2rem;
+}
+
+.navbar-light {
+	background: white;
+	color: black;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: black;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+	color: #2bcaff;
+}
+
+.jumbotron {
+	background: none;
+}
+
+.featureP {
+	min-height: 130px;
+}
+
+.btn-primary {
+	background: #2bcaff;
+	color: black;
+}
+
+#mainBrand {
+	width: 110;
+	height: 85;
+}
+
+#navLogo {
+	width: 65px;
+	height: 60px;
+}

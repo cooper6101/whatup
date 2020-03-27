@@ -1,28 +1,30 @@
 <% layout('layouts/boilerplate') -%>
 
-    <h1>Welcome to Whatup</h1>
-    <p>Welcome to Whatup's Website</p>
-
-    <div id="map">
-
+<div class="container text-center my-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Venues</h1>
+        <p class="lead">Find Your Night Life</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="/profile/register" role="button">Get The App</a>
     </div>
-    
-    <script>
-        mapboxgl.accessToken = "<%= mapboxToken %>";
-        const venues = { features: <%- JSON.stringify(venues) %> };
-    </script>
-    <script src='/javascripts/allVenuesClusterMap.js'></script>
+</div> 
+
+    <div class="row d-flex justify-content-center">
 
     <% venues.forEach(function(venue) { %>
-        <div>
-            <h2>Title: <%= venue.title %></h2>
-            <p>Hours: <%= venue.hours %></p>
-            <p>Description: <%= venue.description %></p>
-            <p>Location: <%= venue.specials %></p>
-            <p>Events: <%= venue.events %></p>
-            <div><a href="/venue/<%= venue.id %>">View More</a></div>
+        <div class="col-8 col-md-6 col-lg-4 pb-3 d-flex justify-content-center"> 
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="<%= venue.images[0].url %>" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title"><%= venue.title %></h5>
+                <p class="card-text"><%= venue.description %></p>
+                <a href="/venue/<%= venue.id %>" class="btn btn-primary">View More</a>
+                </div>
+            </div>
         </div>
     <% }); %>
+
+        </div>
 
     <% users.forEach(function(user) { %>
         <div>
