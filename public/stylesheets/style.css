@@ -57,6 +57,13 @@ footer {
   width: 60%;
 }
 
+@media only screen and (max-width: 767px) {
+ .signupForm {
+   background: none;
+   width: 100%;
+ }
+}
+
 .bodyContainer {
   margin-bottom: 50px;
 }
