@@ -19,11 +19,15 @@ h1 {
 }
 
 h2 {
-  color: #f387c5;
+  color: #00668c;
+}
+
+footer a {
+color: #00668c;
 }
 
 a {
-  color: #f126a6;
+  color: aliceblue;
 }
 
 h5 {
@@ -46,6 +50,11 @@ footer {
 .jumbotron {
   background-color: darkgrey;
   padding: 20px;
+}
+
+.signupForm {
+  background: none;
+  width: 60%;
 }
 
 .bodyContainer {
